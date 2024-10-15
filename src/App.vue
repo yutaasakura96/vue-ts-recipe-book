@@ -25,7 +25,7 @@ import { RouterLink, RouterView } from 'vue-router';
         <li>
           <RouterLink
             :to="{
-              name: 'add-receipe'
+              name: 'add-recipe'
             }"
             >Add Recipe</RouterLink
           >
