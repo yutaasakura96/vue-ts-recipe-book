@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import { userRecipeStore } from '@/stores/recipe';
+import { useRecipeStore } from '@/stores/recipe';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
-const store = userRecipeStore();
+const store = useRecipeStore();
 
 const name = ref('');
 const description = ref('');

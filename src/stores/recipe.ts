@@ -9,7 +9,7 @@ interface Recipe {
 
 type NewRecipe = Omit<Recipe, 'id'>;
 
-export const userRecipeStore = defineStore('recipe', () => {
+export const useRecipeStore = defineStore('recipe', () => {
   const recipes = ref<Recipe[]>([]);
 
   const addRecipe = (recipe: NewRecipe) => {
@@ -19,8 +19,12 @@ export const userRecipeStore = defineStore('recipe', () => {
   };
 
   const getRecipeById = (id: string) => {
-    return recipes.value.find((recipe) => recipe.id === id);
+    return recipes.value.find(recipe => recipe.id === id);
   };
 
-  return { recipes, addRecipe, getRecipeById };
+  const filteredRecipes = (searchQuery: string) =>
+    recipes.value.filter(recipe =>
+      recipe.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
+    );
+  return { recipes, addRecipe, getRecipeById, filteredRecipes };
 });

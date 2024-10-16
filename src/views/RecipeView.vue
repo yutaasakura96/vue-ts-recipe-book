@@ -6,12 +6,12 @@
 </template>
 
 <script setup lang="ts">
-import { userRecipeStore } from '@/stores/recipe';
+import { useRecipeStore } from '@/stores/recipe';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const recipeStore = userRecipeStore();
+const recipeStore = useRecipeStore();
 
 console.log(route.params.id);
 
