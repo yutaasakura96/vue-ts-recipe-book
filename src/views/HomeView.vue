@@ -4,16 +4,10 @@
     <nav>
       <ul>
         <li>
-          <RouterLink
-            :to="{ name: 'recipe', params: { id: 1 } }"
-            >Recipe 1</RouterLink
-          >
+          <RouterLink :to="{ name: 'recipe', params: { id: 1 } }">Recipe 1</RouterLink>
         </li>
         <li>
-          <RouterLink
-            :to="{ name: 'recipe', params: { id: 2 } }"
-            >Recipe 2</RouterLink
-          >
+          <RouterLink :to="{ name: 'recipe', params: { id: 2 } }">Recipe 2</RouterLink>
         </li>
       </ul>
     </nav>
@@ -21,5 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import { userRecipeStore } from '@/stores/recipe';
 import { RouterLink } from 'vue-router';
+
+const recipeStore = userRecipeStore();
 </script>
