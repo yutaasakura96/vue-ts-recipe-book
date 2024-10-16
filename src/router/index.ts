@@ -14,9 +14,14 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/home',
+      redirect: '/'
+    },
+    {
       path: '/favorites',
       name: 'favorites',
-      component: FavoritesView
+      component: FavoritesView,
+      alias: '/meal/:id'
     },
     {
       path: '/add-recipe',
