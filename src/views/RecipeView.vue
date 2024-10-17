@@ -4,13 +4,18 @@
     <p>{{ recipe?.description }}</p>
   </div>
   <div>
-    <RouterLink :to="{
-      name: 'edit-recipe',
-      params: { id: recipe?.id }
-    }">
+    <RouterLink
+      :to="{
+        name: 'edit-recipe',
+        params: { id: recipe?.id }
+      }"
+    >
       Edit
     </RouterLink>
   </div>
+  <button v-if="recipe" @click="recipeStore.toggleFavorite(recipe.id)">
+    {{ isFavorite ? 'Remove from favorites' : 'Add to favorites' }}
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -24,4 +29,6 @@ const recipeStore = useRecipeStore();
 console.log(route.params.id);
 
 const recipe = computed(() => recipeStore.getRecipeById(route.params.id as string));
+
+const isFavorite = computed(() => (recipe.value ? recipeStore.isFavorite(recipe.value.id) : false));
 </script>
