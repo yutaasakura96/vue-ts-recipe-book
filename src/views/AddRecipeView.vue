@@ -1,14 +1,44 @@
 <template>
-  <div>Add form</div>
-  <form @submit.prevent="addRecipe">
-    <button type="submit">Add</button>
+  <h1 class="text-2xl font-bold mb-4">Add form</h1>
+  <form @submit.prevent="addRecipe" class="space-y-4">
+    <div>
+      <input
+        type="text"
+        placeholder="Recipe Name"
+        v-model="name"
+        required
+        class="p-2 border rounded w-full"
+      />
+    </div>
+
+    <div>
+      <textarea
+        placeholder="Recipe description"
+        v-model="description"
+        required
+        class="p-2 border rounded w-full"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">
+      Add
+    </button>
   </form>
 </template>
 
 <script setup lang="ts">
+import { useRecipeStore } from '@/stores/recipe';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+
+const store = useRecipeStore();
+
+const name = ref('');
+const description = ref('');
+
 const router = useRouter();
 const addRecipe = () => {
-  router.push({ name: 'recipe', params: { id: 1 } });
+  const recipe = store.addRecipe({ name: name.value, description: description.value });
+  router.push({ name: 'recipe', params: { id: recipe.id } });
 };
 </script>
